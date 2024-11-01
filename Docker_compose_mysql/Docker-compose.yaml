@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  # service of mysql
+  mysql:
+    # specify env var
+    environment:
+      # specify root pwd
+      MYSQL_ROOT_PASSWORD: welcome
+      # specify a user
+      MYSQL_USER: mysql_dba
+      # specify pwd
+      MYSQL_PASSWORD: welcome
+      # specify db
+      MYSQL_DATABASE: my_db
+    # Specify container name
+    container_name: mysql_con
+    # specify base image
+    image: mysql:8.1
+    # Specify volume for consistency
+    volumes:
+      # map volume to a path
+      - mysql_volume:/var/lib/mysql
+    # Specify port to expose to external
+    ports:
+      # external port: internal
+      - 3306:3306
+    # Specify network
+    networks:
+      - mysql_network
+
+volumes:
+  mysql_volume:
+
+networks:
+  mysql_network:
